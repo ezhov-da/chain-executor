@@ -1,0 +1,19 @@
+<context>
+    <sources>
+        <source name="connection-mssql">
+            <!--info может возвращать что угодно-->
+        </source>
+    </sources>
+
+    <data-sets>
+        <data-set name="resul-tset">
+            <!--info может описывать что угодно-->
+        </data-set>
+    </data-sets>
+
+    <rules>
+        <rule name ="rule-name">
+            <!--info может содержать что угодно для настройки правила-->
+        </rule>
+    </rules>
+</context>
