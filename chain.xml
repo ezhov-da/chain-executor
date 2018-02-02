@@ -1,5 +1,5 @@
 <!--https://code.google.com/archive/p/reflections/-->
-<context>
+<chain>
     <sources>
         <source name="connection-mssql">
             <!--info может возвращать что угодно-->
@@ -12,9 +12,9 @@
         </data-set>
     </data-sets>
 
-    <chain>
+    <units>
         <unit name ="name">
-            <!--info может содержать что угодно для настройки правила-->
-        </rule>
-    </rules>
-</context>
+            <!--info может содержать что угодно для настройки звена-->
+        </unit>
+    </units>
+</chain>
