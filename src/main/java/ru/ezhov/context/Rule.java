@@ -1,6 +1,6 @@
 package ru.ezhov.sql.executor;
 
-public interface Rule {
+public interface Unit {
     /**
      * Выполнение правила
      *
