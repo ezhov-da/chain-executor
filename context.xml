@@ -12,8 +12,8 @@
         </data-set>
     </data-sets>
 
-    <rules>
-        <rule name ="rule-name">
+    <chain>
+        <unit name ="name">
             <!--info может содержать что угодно для настройки правила-->
         </rule>
     </rules>
