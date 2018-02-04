@@ -1,20 +1,20 @@
 <!--https://code.google.com/archive/p/reflections/-->
 <chain>
     <sources>
-        <source name="connection-mssql">
-            <!--info может возвращать что угодно-->
+        <source name="test.source">
+            Вот этот текст я возвращаю
         </source>
     </sources>
 
     <data-sets>
-        <data-set name="resul-tset">
+        <data-set name="test.dataset">
             <!--info может описывать что угодно-->
         </data-set>
     </data-sets>
 
     <chain-links>
-        <chain-link name="name">
-            <!--info может содержать что угодно для настройки звена-->
+        <chain-link name="test.chainlink">
+            Это тестовый текст
         </chain-link>
     </chain-links>
 </chain>

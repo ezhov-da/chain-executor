@@ -1,7 +1,10 @@
 package ru.ezhov.chain.core.configuration;
 
 import java.io.FileInputStream;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 public class PropertiesConfiguration implements Configuration {
     private static final String SOURCE = "source.";
@@ -11,16 +14,20 @@ public class PropertiesConfiguration implements Configuration {
     private Properties properties;
     private Set<SourceConfiguration> sourceConfigurations;
     private Set<DataSetConfiguration> dataSetConfigurations;
-    private List<ChainLinkConfiguration> chainLinkConfigurations;
+    private Set<ChainLinkConfiguration> chainLinkConfigurations;
 
-    public PropertiesConfiguration() throws Exception {
+    private String pathToPropertyFile;
+
+    public PropertiesConfiguration(String pathToPropertyFile) throws Exception {
+        this.pathToPropertyFile = pathToPropertyFile;
+
         properties = new Properties();
 
-        properties.load(new FileInputStream("./context.properties"));
+        properties.load(new FileInputStream(pathToPropertyFile));
 
-        sourceConfigurations = new HashSet<SourceConfiguration>();
-        dataSetConfigurations = new HashSet<DataSetConfiguration>();
-        chainLinkConfigurations = new ArrayList<ChainLinkConfiguration>();
+        sourceConfigurations = new HashSet<>();
+        dataSetConfigurations = new HashSet<>();
+        chainLinkConfigurations = new HashSet<>();
 
         Set<Map.Entry<Object, Object>> entries = properties.entrySet();
         for (Map.Entry<Object, Object> objectEntry : entries) {
@@ -45,7 +52,7 @@ public class PropertiesConfiguration implements Configuration {
         return dataSetConfigurations;
     }
 
-    public List<ChainLinkConfiguration> getChainLinkConfiguration() {
+    public Set<ChainLinkConfiguration> getChainLinkConfiguration() {
         return chainLinkConfigurations;
     }
 }

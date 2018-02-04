@@ -16,5 +16,4 @@ public class SourceConfiguration implements ConfigurationInfo {
     public String getImplementClass() {
         return implementClass;
     }
-
 }

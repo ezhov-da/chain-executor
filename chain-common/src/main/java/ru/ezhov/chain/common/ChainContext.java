@@ -36,9 +36,16 @@ public interface ChainContext {
     Set<DataSet<Object>> getDataSets();
 
     /**
-     * Получение зарегистрированных правил контекста
+     * Получение зарегистрированного обработчика
      *
-     * @return List<Rule> - список зарегистрированных правил в контексте
+     * @param name - имя зарегистрированного обработчика
      */
-    Set<ChainLink> getChainLinks();
+    ChainLink getChainLink(String name);
+
+    /**
+     * Получение зарегистрированных звеньев контекста
+     *
+     * @return List<Rule> - список зарегистрированных звеньев в контексте
+     */
+    List<ChainLink> getChainLinks();
 }

@@ -8,7 +8,6 @@ import ru.ezhov.chain.core.configuration.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class AbstractChainContext implements ChainContext {
 
@@ -16,7 +15,7 @@ public abstract class AbstractChainContext implements ChainContext {
     protected Map<String, DataSet<Object>> dataSetMap;
     protected Map<String, ChainLink> chainLinkMap;
 
-    private Configuration configuration;
+    protected Configuration configuration;
 
     public AbstractChainContext(Configuration configuration) {
         this.configuration = configuration;
@@ -25,14 +24,4 @@ public abstract class AbstractChainContext implements ChainContext {
         dataSetMap = new HashMap<String, DataSet<Object>>();
         chainLinkMap = new HashMap<String, ChainLink>();
     }
-
-    public abstract Source<Object> getSource(String name);
-
-    public abstract Set<Source<Object>> getSources();
-
-    public abstract DataSet<Object> getDataSet(String name);
-
-    public abstract Set<DataSet<Object>> getDataSets();
-
-    public abstract Set<ChainLink> getChainLinks();
 }

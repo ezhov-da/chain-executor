@@ -6,13 +6,24 @@ public interface Source<T> extends Info {
      * Источником может быть что угодно.
      *
      * @param param - параметры, которые будут передаваться из конфигурационного файла
-     * @return - любой объект, который в дальнейшем будет лежать в карте контекстов и передаваться в каждое правило
      * @throws Exception - в случае возникновение ошибки выполнение контекста прерывается
      */
-    T init(String param) throws Exception;
+    void init(String param) throws Exception;
+
+    /**
+     * @return - любой объект, который потом можно будет получать из источника
+     * @throws Exception
+     */
+    T getSource() throws Exception;
 
     /**
      * Вызывается перед завершением выполнения контекста или в случае ошибки на следующих шагах
      */
     void preDestroy();
+
+    @Override
+    String instruction();
+
+    @Override
+    String version();
 }

@@ -10,7 +10,7 @@ public class PropertiesConfigurationTest {
 
     @BeforeClass
     public static void initPropertiesConfiguration() throws Exception {
-        propertiesConfiguration = new PropertiesConfiguration();
+        propertiesConfiguration = new PropertiesConfiguration("./context.properties");
     }
 
     @Test

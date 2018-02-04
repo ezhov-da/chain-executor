@@ -30,7 +30,17 @@
         </dependency>
         <dependency>
             <groupId>ru.ezhov</groupId>
-            <artifactId>chain-common</artifactId>
+            <artifactId>chain-sources</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.ezhov</groupId>
+            <artifactId>chain-datasets</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.ezhov</groupId>
+            <artifactId>chain-links</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -43,15 +53,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
-                <!--<configuration>-->
-                <!--<archive>-->
-                <!--<manifest>-->
-                <!--<addClasspath>true</addClasspath>-->
+                <configuration>
+                <archive>
+                <manifest>
+                <addClasspath>true</addClasspath>
                 <!--<mainClass>ru.ezhov.testmvn.Test</mainClass>-->
-                <!--<classpathPrefix>${directory.extended.library}/</classpathPrefix>-->
-                <!--</manifest>-->
-                <!--</archive>-->
-                <!--</configuration>-->
+                <classpathPrefix>${directory.extended.library}/</classpathPrefix>
+                </manifest>
+                </archive>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

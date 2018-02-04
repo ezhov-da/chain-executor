@@ -8,5 +8,5 @@ public interface Configuration {
 
     Set<DataSetConfiguration> getDataSetConfiguration();
 
-    List<ChainLinkConfiguration> getChainLinkConfiguration();
+    Set<ChainLinkConfiguration> getChainLinkConfiguration();
 }
