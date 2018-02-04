@@ -8,7 +8,7 @@ public interface ChainLink extends Info {
      * @param initParam - параметры, которые описываются в конфигурационном файле
      * @throws Exception
      */
-    void setInitParam(String initParam) throws Exception;
+    void init(String param) throws Exception;
 
     /**
      * Выполнение правила

@@ -16,8 +16,8 @@ public class TestChainLink implements ChainLink {
     }
 
     @Override
-    public void setInitParam(String initParam) throws Exception {
-        this.initParam = initParam;
+    public void init(String param) throws Exception {
+        this.initParam = param == null ? "" : param.trim();
     }
 
     @Override

@@ -14,7 +14,7 @@ public class TestSource implements Source<String> {
     private String testParam;
 
     public void init(String param) throws Exception {
-        this.testParam = param;
+        this.testParam = param == null ? "" : param.trim();
     }
 
     public String getSource() throws Exception {

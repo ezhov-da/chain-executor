@@ -27,6 +27,6 @@ public class XmlSource {
     }
 
     public String getText() {
-        return text == null ? "" : text.trim();
+        return text;
     }
 }

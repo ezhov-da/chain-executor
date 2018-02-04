@@ -100,7 +100,7 @@ public class XmlChainContext extends AbstractChainContext {
                 Class<?> sourceClass = Class.forName(clazz);
 
                 ChainLink chainLink = (ChainLink) sourceClass.newInstance();
-                chainLink.setInitParam(xmlChainLink.getText());
+                chainLink.init(xmlChainLink.getText());
                 chainLinkMap.put(xmlChainLink.getName(), chainLink);
             } else {
                 throw new NotFoundChainLinkWithName("Not found chain link with name: " + xmlChainLink.getName());

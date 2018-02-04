@@ -25,6 +25,6 @@ public class XmlChainLink {
     }
 
     public String getText() {
-        return text == null ? "" : text.trim();
+        return text;
     }
 }
