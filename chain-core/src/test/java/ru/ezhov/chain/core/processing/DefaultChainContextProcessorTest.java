@@ -2,7 +2,7 @@ package ru.ezhov.chain.core.processing;
 
 import org.junit.Test;
 import ru.ezhov.chain.core.configuration.PropertiesConfiguration;
-import ru.ezhov.chain.core.context.xml.XmlChainContext;
+import ru.ezhov.plugin.loader.xml.XmlChainContext;
 
 public class DefaultChainContextProcessorTest {
     @Test

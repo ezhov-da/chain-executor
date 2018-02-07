@@ -6,16 +6,17 @@
     <artifactId>chain-executor</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>chain-plugin-implementation-datasets</module>
+        <module>chain-plugin-implementation-links</module>
+        <module>chain-plugin-implementation-sources</module>
+        <module>chain-configuration</module>
         <module>chain-core</module>
-        <module>chain-common</module>
-        <module>chain-sources</module>
-        <module>chain-datasets</module>
-        <module>chain-links</module>
+        <module>chain-plugin-loader</module>
     </modules>
     <packaging>pom</packaging>
 
     <name>chain-executor</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/ezhov-da/chain-executor</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
