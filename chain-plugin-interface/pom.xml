@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chain-plugins</artifactId>
+    <artifactId>chain-plugin-interface</artifactId>
     <packaging>jar</packaging>
 
     <name>chain-common</name>
