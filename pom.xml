@@ -6,16 +6,18 @@
     <artifactId>chain-executor</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>chain-plugin-interface</module>
+        <module>chain-plugin-implementation-datasets</module>
+        <module>chain-plugin-implementation-links</module>
+        <module>chain-plugin-implementation-sources</module>
+        <module>chain-configuration</module>
+        <module>chain-loader</module>
         <module>chain-core</module>
-        <module>chain-common</module>
-        <module>chain-sources</module>
-        <module>chain-datasets</module>
-        <module>chain-links</module>
     </modules>
     <packaging>pom</packaging>
 
     <name>chain-executor</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/ezhov-da/chain-executor</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,12 +25,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -41,6 +37,12 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.2.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

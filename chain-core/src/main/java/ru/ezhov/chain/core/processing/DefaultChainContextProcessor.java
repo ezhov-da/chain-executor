@@ -1,8 +1,7 @@
 package ru.ezhov.chain.core.processing;
 
-import ru.ezhov.chain.common.ChainContext;
-import ru.ezhov.chain.common.ChainLink;
-import ru.ezhov.chain.common.Source;
+import ru.ezhov.chain.plugin.ChainLinkPlugin;
+import ru.ezhov.chain.plugin.SourcePlugin;
 
 import java.util.List;
 import java.util.Set;
@@ -16,11 +15,11 @@ public class DefaultChainContextProcessor implements ChainContextProcessor {
 
     @Override
     public void process() {
-        List<ChainLink> chainLinkList = chainContext.getChainLinks();
+        List<ChainLinkPlugin> chainLinkPluginList = chainContext.getChainLinks();
 
         try {
-            for (ChainLink chainLink : chainLinkList) {
-                chainLink.execute(chainContext);
+            for (ChainLinkPlugin chainLinkPlugin : chainLinkPluginList) {
+                chainLinkPlugin.join(chainContext);
             }
         } catch (Exception e) {
             executeAllPredestroyMethods();
@@ -29,7 +28,7 @@ public class DefaultChainContextProcessor implements ChainContextProcessor {
     }
 
     private void executeAllPredestroyMethods() {
-        Set<Source<Object>> sourceSet = chainContext.getSources();
-        sourceSet.forEach(source -> source.preDestroy());
+        Set<SourcePlugin<Object>> sourcePluginSet = chainContext.getSources();
+        sourcePluginSet.forEach(source -> source.preDestroy());
     }
 }

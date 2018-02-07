@@ -1,9 +1,9 @@
 <!--https://code.google.com/archive/p/reflections/-->
 <chain>
     <sources>
-        <source name="test.source">
+        <sourcePlugin name="test.sourcePlugin">
             Вот этот текст я возвращаю
-        </source>
+        </sourcePlugin>
     </sources>
 
     <data-sets>
