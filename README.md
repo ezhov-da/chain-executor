@@ -1,4 +1,18 @@
 # chain-executor  
 
-Please, see dev's branch: https://github.com/ezhov-da/chain-executor/tree/dev  
-and project diagram [chain-executor.xml] on https://www.draw.io
+Пожалуйста, используйте для ознакомления ветку разработки <a href="https://github.com/ezhov-da/chain-executor/tree/dev">[dev]</a> .  
+Так же доступна диаграмма отношений **chain-executor.xml** в корне проекта, с которой можно ознакомиться через сайт <a href="https://www.draw.io">draw.io</a> 
+
+**Цель проекта:**  
+Данный проект является тестовым для ознакомления с принципами работы <a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html">DDD</a>.
+
+**Описание:**  
+Проект представляет из себя абстракцию цепи, которая состоит из звеньев и предоставляет возможность создавать цепи на любой "вкус".
+
+Для того, чтоб создать собственную цепь, необходимо:    
+* взять источник элементов для цепи - **Source**
+* набор элементов - **DataSet**
+* сделать из них звенья **Link**
+* Соединить каждое звено в цепь - **join**
+* Сделать финальную сборку - **create**
+

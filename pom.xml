@@ -8,10 +8,10 @@
     <modules>
         <module>chain-plugin-interface</module>
         <module>chain-plugin-implementation-datasets</module>
-        <module>chain-plugin-implementation-links</module>
-        <module>chain-plugin-implementation-sources</module>
+        <module>chain-plugin-implementation-link</module>
+        <module>chain-plugin-implementation-source</module>
         <module>chain-configuration</module>
-        <module>chain-loader</module>
+        <module>chain-plugin-loader</module>
         <module>chain-core</module>
     </modules>
     <packaging>pom</packaging>
