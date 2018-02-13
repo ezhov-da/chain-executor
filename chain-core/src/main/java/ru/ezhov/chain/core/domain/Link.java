@@ -1,18 +1,12 @@
+
+
+
 package ru.ezhov.chain.core.domain;
 
-public class Link {
-    private String name;
-    private String version;
-    private String instruction;
+public class Link { 
+    void join() throws LinkJoinException;
 
-    private Object source;
+    String instruction();
 
-    public Link(String name, String version, String instruction, Object source) {
-        this.name = name;
-        this.version = version;
-        this.instruction = instruction;
-        this.source = source;
-    }
-
-    //TODO: подумать над функционалом
+    String version();
 }
