@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chain-sources</artifactId>
+    <artifactId>chain-plugin-implementation-source</artifactId>
     <packaging>jar</packaging>
 
     <name>chain-plugin-implementation-source</name>
