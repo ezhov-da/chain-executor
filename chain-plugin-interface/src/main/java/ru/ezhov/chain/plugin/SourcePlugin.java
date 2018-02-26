@@ -3,7 +3,7 @@ package ru.ezhov.chain.plugin;
 import ru.ezhov.chain.plugin.exception.SourceInitializeException;
 import ru.ezhov.chain.plugin.exception.SourcePluginException;
 
-public interface SourcePlugin<T> extends PluginInfo {
+public interface SourcePlugin extends PluginInfo {
     /**
      * Первый метод, который вызывается для инициализации источника.
      * Источником может быть что угодно.
@@ -17,7 +17,7 @@ public interface SourcePlugin<T> extends PluginInfo {
      * @return - любой объект, который потом можно будет получать из источника
      * @throws Exception
      */
-    T getSource() throws SourcePluginException;
+    Object getSource() throws SourcePluginException;
 
     /**
      * Вызывается перед завершением выполнения контекста или в случае ошибки на следующих шагах

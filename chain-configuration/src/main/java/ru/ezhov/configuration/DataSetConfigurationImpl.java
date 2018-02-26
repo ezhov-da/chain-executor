@@ -1,7 +1,5 @@
 package ru.ezhov.configuration;
 
-import ru.ezhov.chain.core.configuration.DataSetConfiguration;
-
 public class DataSetConfigurationImpl implements DataSetConfiguration {
     private String name;
     private String implementClass;

@@ -1,7 +1,5 @@
 package ru.ezhov.configuration;
 
-import ru.ezhov.chain.core.configuration.SourceConfiguration;
-
 public class SourceConfigurationImpl implements SourceConfiguration {
     private String name;
     private String implementClass;

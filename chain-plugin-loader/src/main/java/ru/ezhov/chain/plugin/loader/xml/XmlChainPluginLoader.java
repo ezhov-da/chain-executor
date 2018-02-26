@@ -1,16 +1,17 @@
 package ru.ezhov.chain.plugin.loader.xml;
 
-import ru.ezhov.chain.core.configuration.ChainConfiguration;
-import ru.ezhov.chain.core.configuration.DataSetConfiguration;
-import ru.ezhov.chain.core.configuration.LinkConfiguration;
-import ru.ezhov.chain.core.configuration.SourceConfiguration;
-import ru.ezhov.chain.plugin.loader.exception.NotFoundLinkWithName;
-import ru.ezhov.chain.plugin.loader.exception.NotFoundDataSetWithName;
-import ru.ezhov.chain.plugin.loader.exception.NotFoundSourceWithName;
 import ru.ezhov.chain.plugin.DataSetPlugin;
 import ru.ezhov.chain.plugin.LinkPlugin;
 import ru.ezhov.chain.plugin.SourcePlugin;
 import ru.ezhov.chain.plugin.loader.AbstractChainPluginLoader;
+import ru.ezhov.chain.plugin.loader.exception.NotFoundDataSetWithName;
+import ru.ezhov.chain.plugin.loader.exception.NotFoundLinkWithName;
+import ru.ezhov.chain.plugin.loader.exception.NotFoundSourceWithName;
+import ru.ezhov.chain.plugin.loader.exception.NotLoadingChainPlugin;
+import ru.ezhov.configuration.ChainConfiguration;
+import ru.ezhov.configuration.DataSetConfiguration;
+import ru.ezhov.configuration.LinkConfiguration;
+import ru.ezhov.configuration.SourceConfiguration;
 
 import javax.xml.bind.JAXB;
 import java.io.FileInputStream;
@@ -22,10 +23,17 @@ import java.util.Set;
 public class XmlChainPluginLoader extends AbstractChainPluginLoader {
     private String pathToXmlChainContext;
 
-    public XmlChainPluginLoader(String pathToXmlChainContext, ChainConfiguration chainConfiguration) throws Exception {
+    //TODO: Убрать связь с модулем конфигурации, ее будет делать клиент
+    public XmlChainPluginLoader(String pathToXmlChainContext, ChainConfiguration chainConfiguration) throws NotLoadingChainPlugin {
         super(chainConfiguration);
         this.pathToXmlChainContext = pathToXmlChainContext;
-        init();
+        try {
+            init();
+        } catch (Exception e) {
+            NotLoadingChainPlugin notLoadingChainPlugin = new NotLoadingChainPlugin(e.getMessage());
+            notLoadingChainPlugin.addSuppressed(e);
+            throw notLoadingChainPlugin;
+        }
     }
 
     private void init() throws Exception {
@@ -113,12 +121,12 @@ public class XmlChainPluginLoader extends AbstractChainPluginLoader {
     }
 
     @Override
-    public Map<String, SourcePlugin<Object>> getSources() {
+    public Map<String, SourcePlugin> getSources() {
         return sourceMap;
     }
 
     @Override
-    public Map<String, DataSetPlugin<Object>> getDataSets() {
+    public Map<String, DataSetPlugin> getDataSets() {
         return dataSetMap;
     }
 

@@ -2,8 +2,8 @@ package ru.ezhov.chain.links.test;
 
 import ru.ezhov.chain.plugin.LinkPlugin;
 import ru.ezhov.chain.plugin.SourcePlugin;
-import ru.ezhov.chain.plugin.exception.LinkJoinException;
 import ru.ezhov.chain.plugin.exception.LinkInitializeException;
+import ru.ezhov.chain.plugin.exception.LinkJoinException;
 import ru.ezhov.chain.plugin.exception.SourcePluginException;
 
 import java.util.Map;
@@ -27,10 +27,10 @@ public class TestLinkPlugin implements LinkPlugin {
     @Override
     public void join(Map<String, Object> sourceMap,
                      Map<String, Object> dataSetMap) throws LinkJoinException, SourcePluginException {
-        SourcePlugin<String> stringSourcePlugin =
-                (SourcePlugin<String>) sourceMap.get("test.source");
+        SourcePlugin stringSourcePlugin =
+                (SourcePlugin) sourceMap.get("test.source");
 
-        String sourceText = stringSourcePlugin.getSource();
+        String sourceText = (String) stringSourcePlugin.getSource();
         System.out.println("SourcePlugin text: " + sourceText);
         System.out.println("\tcount char source text: " + sourceText.length());
         System.out.println("Param text: " + initParam);

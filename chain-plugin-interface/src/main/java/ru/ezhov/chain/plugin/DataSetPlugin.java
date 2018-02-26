@@ -4,7 +4,7 @@ import ru.ezhov.chain.plugin.exception.DataSetInitializeException;
 
 import java.util.Map;
 
-public interface DataSetPlugin<T> extends PluginInfo {
+public interface DataSetPlugin extends PluginInfo {
 
     /**
      * Метод инициализирует набор данных
@@ -19,7 +19,7 @@ public interface DataSetPlugin<T> extends PluginInfo {
     /**
      * @return - любой объект, который будет передаваться в каждое правило
      */
-    T getDataSet() throws Exception;
+    Object getDataSet() throws Exception;
 
     @Override
     String instruction();

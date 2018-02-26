@@ -1,10 +1,5 @@
 package ru.ezhov.configuration;
 
-import ru.ezhov.chain.core.configuration.LinkConfiguration;
-import ru.ezhov.chain.core.configuration.ChainConfiguration;
-import ru.ezhov.chain.core.configuration.DataSetConfiguration;
-import ru.ezhov.chain.core.configuration.SourceConfiguration;
-
 import java.io.FileInputStream;
 import java.util.HashSet;
 import java.util.Map;
@@ -23,29 +18,35 @@ public class PropertiesChainConfiguration implements ChainConfiguration {
 
     private String pathToPropertyFile;
 
-    public PropertiesChainConfiguration(String pathToPropertyFile) throws Exception {
+    public PropertiesChainConfiguration(String pathToPropertyFile) throws NotLoadingChainConfigurationException {
         this.pathToPropertyFile = pathToPropertyFile;
 
-        properties = new Properties();
+        try {
+            properties = new Properties();
 
-        properties.load(new FileInputStream(pathToPropertyFile));
+            properties.load(new FileInputStream(pathToPropertyFile));
 
-        sourceConfigurationImpls = new HashSet<>();
-        dataSetConfigurationImpls = new HashSet<>();
-        linkConfigurations = new HashSet<>();
+            sourceConfigurationImpls = new HashSet<>();
+            dataSetConfigurationImpls = new HashSet<>();
+            linkConfigurations = new HashSet<>();
 
-        Set<Map.Entry<Object, Object>> entries = properties.entrySet();
-        for (Map.Entry<Object, Object> objectEntry : entries) {
-            String key = objectEntry.getKey().toString();
-            String value = objectEntry.getValue().toString();
+            Set<Map.Entry<Object, Object>> entries = properties.entrySet();
+            for (Map.Entry<Object, Object> objectEntry : entries) {
+                String key = objectEntry.getKey().toString();
+                String value = objectEntry.getValue().toString();
 
-            if (key.startsWith(SOURCE)) {
-                sourceConfigurationImpls.add(new SourceConfigurationImpl(key.replace(SOURCE, ""), value));
-            } else if (key.startsWith(DATA_SET)) {
-                dataSetConfigurationImpls.add(new DataSetConfigurationImpl(key.replace(DATA_SET, ""), value));
-            } else if (key.startsWith(CHAIN_LINK)) {
-                linkConfigurations.add(new LinkConfigurationImpl(key.replace(CHAIN_LINK, ""), value));
+                if (key.startsWith(SOURCE)) {
+                    sourceConfigurationImpls.add(new SourceConfigurationImpl(key.replace(SOURCE, ""), value));
+                } else if (key.startsWith(DATA_SET)) {
+                    dataSetConfigurationImpls.add(new DataSetConfigurationImpl(key.replace(DATA_SET, ""), value));
+                } else if (key.startsWith(CHAIN_LINK)) {
+                    linkConfigurations.add(new LinkConfigurationImpl(key.replace(CHAIN_LINK, ""), value));
+                }
             }
+        } catch (Exception e) {
+            NotLoadingChainConfigurationException notLoadingChainConfigurationException = new NotLoadingChainConfigurationException(e.getMessage());
+            notLoadingChainConfigurationException.addSuppressed(e);
+            throw notLoadingChainConfigurationException;
         }
     }
 

@@ -13,6 +13,7 @@
         <module>chain-configuration</module>
         <module>chain-plugin-loader</module>
         <module>chain-core</module>
+        <module>app-console</module>
     </modules>
     <packaging>pom</packaging>
 

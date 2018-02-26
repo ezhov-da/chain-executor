@@ -14,14 +14,14 @@ public interface ChainPluginLoader {
      * @return список источников данных
      */
 
-    Map<String, SourcePlugin<Object>> getSources();
+    Map<String, SourcePlugin> getSources();
 
     /**
      * Получение всех наборов данных доступных цепочке
      *
      * @return список наборов данных
      */
-    Map<String, DataSetPlugin<Object>> getDataSets();
+    Map<String, DataSetPlugin> getDataSets();
 
     /**
      * Получение зарегистрированных звеньев контекста

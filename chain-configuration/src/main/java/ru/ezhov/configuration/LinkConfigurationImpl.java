@@ -1,7 +1,5 @@
 package ru.ezhov.configuration;
 
-import ru.ezhov.chain.core.configuration.LinkConfiguration;
-
 public class LinkConfigurationImpl implements LinkConfiguration {
     private String name;
     private String implementClass;
