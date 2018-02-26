@@ -16,3 +16,7 @@
 * Соединить каждое звено в цепь - **join**
 * Сделать финальную сборку - **build**
 
+Для запуска app-console через IntelliJ Idea без зависимостей от реализаций интерфейсов, необходимо в конфигурации AppConsole указать для VM options:
+-cp
+app-console\target\app-console.jar;chain-plugin-implementation-datasets\target\chain-plugin-implementation-datasets.jar;chain-plugin-implementation-link\target\chain-plugin-implementation-link.jar
+
