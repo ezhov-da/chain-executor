@@ -1,5 +1,6 @@
 package ru.ezhov.chain.plugin;
 
+import ru.ezhov.chain.plugin.exception.DataSetPluginException;
 import ru.ezhov.chain.plugin.exception.LinkInitializeException;
 import ru.ezhov.chain.plugin.exception.LinkJoinException;
 import ru.ezhov.chain.plugin.exception.SourcePluginException;
@@ -19,15 +20,15 @@ public interface LinkPlugin extends PluginInfo {
     /**
      * Выполнение звена
      *
-     * @param sourceMap  - словарь источников
-     * @param dataSetMap - словарь наборов данных
+     * @param sources  - список объектов источников
+     * @param dataSets - список объектов наборов данных
      * @throws LinkJoinException - в случае ошибки происходит прерываение выполнения последующих правил
      *                           и происходит вызов всех {@link SourcePlugin#preDestroy()}
      */
     void join(
-            Map<String, Object> sourceMap,
-            Map<String, Object> dataSetMap
-    ) throws LinkJoinException, SourcePluginException;
+            SourcePlugin[] sources,
+            DataSetPlugin[] dataSets
+    ) throws LinkJoinException, SourcePluginException, DataSetPluginException;
 
     @Override
     String instruction();
