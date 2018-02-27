@@ -1,11 +1,13 @@
 package ru.ezhov.chain.links.test;
 
+import ru.ezhov.chain.plugin.DataSetPlugin;
 import ru.ezhov.chain.plugin.LinkPlugin;
 import ru.ezhov.chain.plugin.SourcePlugin;
 import ru.ezhov.chain.plugin.exception.LinkInitializeException;
 import ru.ezhov.chain.plugin.exception.LinkJoinException;
 import ru.ezhov.chain.plugin.exception.SourcePluginException;
 
+import java.util.List;
 import java.util.Map;
 
 public class TestLinkPlugin implements LinkPlugin {
@@ -25,10 +27,10 @@ public class TestLinkPlugin implements LinkPlugin {
     }
 
     @Override
-    public void join(Map<String, Object> sourceMap,
-                     Map<String, Object> dataSetMap) throws LinkJoinException, SourcePluginException {
+    public void join(List<SourcePlugin> sources,
+                     List<DataSetPlugin> datasets) throws LinkJoinException, SourcePluginException {
         SourcePlugin stringSourcePlugin =
-                (SourcePlugin) sourceMap.get("test.source");
+                (SourcePlugin) sources.get(0);
 
         String sourceText = (String) stringSourcePlugin.getSource();
         System.out.println("SourcePlugin text: " + sourceText);

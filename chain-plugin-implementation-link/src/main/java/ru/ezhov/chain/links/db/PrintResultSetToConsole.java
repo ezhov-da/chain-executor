@@ -12,6 +12,7 @@ import ru.ezhov.chain.plugin.exception.SourcePluginException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PrintResultSetToConsole implements LinkPlugin {
     @Override
@@ -20,13 +21,13 @@ public class PrintResultSetToConsole implements LinkPlugin {
     }
 
     @Override
-    public void join(SourcePlugin[] sources, DataSetPlugin[] dataSets)
+    public void join(List<SourcePlugin> sources, List<DataSetPlugin> dataSets)
             throws
             LinkJoinException,
             SourcePluginException,
             DataSetPluginException {
         try {
-            ResultSet resultSet = (ResultSet) dataSets[0].getDataSet();
+            ResultSet resultSet = (ResultSet) dataSets.get(0).getDataSet();
 
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();

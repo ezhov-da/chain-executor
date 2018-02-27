@@ -11,27 +11,29 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class ResultSetFromSelect implements DataSetPlugin {
     private String query;
-    private Connection connection;
+    private SourcePlugin sourcePluginConnection;
     private ResultSet resultSet;
 
     @Override
-    public void init(String param, SourcePlugin[] sources) throws DataSetInitializeException {
+    public void init(String param, List<SourcePlugin> sources) throws DataSetInitializeException {
         query = param;
-        try {
-            connection = (Connection) sources[0].getSource();
-        } catch (SourcePluginException e) {
-            throw new DataSetInitializeException(e);
-        }
+        sourcePluginConnection = sources.get(0);
     }
 
     @Override
     public Object getDataSet() throws DataSetPluginException {
-        try (Statement statement = connection.createStatement()) {
-            resultSet = statement.executeQuery(query);
-            return resultSet;
+        try {
+            Connection connection = (Connection) sourcePluginConnection.getSource();
+            try (Statement statement = connection.createStatement()) {
+                resultSet = statement.executeQuery(query);
+                return resultSet;
+            } catch (Exception e) {
+                throw e;
+            }
         } catch (Exception e) {
             throw new DataSetPluginException(e);
         }

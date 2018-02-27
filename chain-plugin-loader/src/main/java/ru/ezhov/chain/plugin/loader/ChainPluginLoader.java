@@ -28,6 +28,5 @@ public interface ChainPluginLoader {
      *
      * @return List<Rule> - список зарегистрированных звеньев в контексте
      */
-    //TODO: все таки нужны имена для звеньев
-    List<LinkPlugin> getLinks();
+    Map<String, LinkPlugin> getLinks();
 }

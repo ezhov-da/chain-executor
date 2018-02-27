@@ -15,18 +15,15 @@ import ru.ezhov.configuration.SourceConfiguration;
 
 import javax.xml.bind.JAXB;
 import java.io.FileInputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class XmlChainPluginLoader extends AbstractChainPluginLoader {
     private String pathToXmlChainContext;
 
     //TODO: Убрать связь с модулем конфигурации, ее будет делать клиент
-    public XmlChainPluginLoader(String pathToXmlChainContext, ChainConfiguration chainConfiguration) throws NotLoadingChainPlugin {
+    public XmlChainPluginLoader(String pathToXmlChain, ChainConfiguration chainConfiguration) throws NotLoadingChainPlugin {
         super(chainConfiguration);
-        this.pathToXmlChainContext = pathToXmlChainContext;
+        this.pathToXmlChainContext = pathToXmlChain;
         try {
             init();
         } catch (Exception e) {
@@ -45,7 +42,7 @@ public class XmlChainPluginLoader extends AbstractChainPluginLoader {
 
         initSources(sourceConfigurations, xmlChain.getXmlSources());
         initDataSet(dataSetConfigurations, xmlChain.getXmlDataSets());
-        initChainLink(linkConfigurations, xmlChain.getXmlLinks());
+        initLink(linkConfigurations, xmlChain.getXmlLinks());
     }
 
     private void initSources(Set<SourceConfiguration> sourceConfigurations, List<XmlSource> xmlSources) throws Exception {
@@ -63,9 +60,9 @@ public class XmlChainPluginLoader extends AbstractChainPluginLoader {
                 Class<?> sourceClass = Class.forName(clazz);
 
                 SourcePlugin sourcePlugin = (SourcePlugin) sourceClass.newInstance();
-                sourcePlugin.init(xmlSource.getText());
+                sourcePlugin.init(xmlSource.getParam());
 
-                sourceMap.put(xmlSource.getName(), sourcePlugin);
+                sources.put(xmlSource.getName(), sourcePlugin);
             } else {
                 throw new NotFoundSourceWithName("Not found source with name: " + xmlSource.getName());
             }
@@ -88,16 +85,30 @@ public class XmlChainPluginLoader extends AbstractChainPluginLoader {
 
                 DataSetPlugin dataSetPlugin = (DataSetPlugin) sourceClass.newInstance();
 
-                dataSetPlugin.init(xmlDataSet.getText(), sourceMap); //TODO: сделать корректную передачу параметра)
+                List<String> names = xmlDataSet.getXmlInputSources().getNames();
 
-                dataSetMap.put(xmlDataSet.getName(), dataSetPlugin);
+                List<SourcePlugin> sourcePlugins = new ArrayList<>();
+
+                for (String name : names) {
+                    SourcePlugin sourcePlugin = sources.get(name);
+                    if (sourcePlugin == null) {
+                        throw new NotFoundSourceWithName("Не найден источник с именем: " + name);
+                    } else {
+                        sourcePlugins.add(sourcePlugin);
+                    }
+                }
+
+
+                dataSetPlugin.init(xmlDataSet.getParam(), sourcePlugins);
+
+                dataSets.put(xmlDataSet.getName(), dataSetPlugin);
             } else {
                 throw new NotFoundDataSetWithName("Not found data set with name: " + xmlDataSet.getName());
             }
         }
     }
 
-    private void initChainLink(Set<LinkConfiguration> linkConfigurations, List<XmlLink> xmlLinks) throws Exception {
+    private void initLink(Set<LinkConfiguration> linkConfigurations, List<XmlLink> xmlLinks) throws Exception {
         for (XmlLink xmlLink : xmlLinks) {
             Optional<LinkConfiguration> configurationOptional = linkConfigurations
                     .stream()
@@ -111,9 +122,35 @@ public class XmlChainPluginLoader extends AbstractChainPluginLoader {
                 String clazz = configurationOptional.get().implementClass();
                 Class<?> sourceClass = Class.forName(clazz);
 
+
+                List<String> namesSource = xmlLink.getXmlInputSources().getNames();
+                List<String> namesDataSet = xmlLink.getXmlInputDataSet().getNames();
+
+                List<SourcePlugin> sourcePlugins = new ArrayList<>();
+                List<DataSetPlugin> dataSetsPlugins = new ArrayList<>();
+
+                for (String name : namesSource) {
+                    SourcePlugin sourcePlugin = sources.get(name);
+                    if (sourcePlugin == null) {
+                        throw new NotFoundSourceWithName("Не найден источник с именем: " + name);
+                    } else {
+                        sourcePlugins.add(sourcePlugin);
+                    }
+                }
+
+                for (String name : namesDataSet) {
+                    DataSetPlugin dataSetPlugin = dataSets.get(name);
+                    if (dataSetPlugin == null) {
+                        throw new NotFoundDataSetWithName("Не найден набор данных с именем: " + name);
+                    } else {
+                        dataSetsPlugins.add(dataSetPlugin);
+                    }
+                }
+
+
                 LinkPlugin linkPlugin = (LinkPlugin) sourceClass.newInstance();
-                linkPlugin.init(xmlLink.getText());
-                linkMap.put(xmlLink.getName(), linkPlugin);
+                linkPlugin.init(xmlLink.getParam());
+                links.put(xmlLink.getName(), linkPlugin);
             } else {
                 throw new NotFoundLinkWithName("Not found chain link with name: " + xmlLink.getName());
             }
@@ -122,17 +159,17 @@ public class XmlChainPluginLoader extends AbstractChainPluginLoader {
 
     @Override
     public Map<String, SourcePlugin> getSources() {
-        return sourceMap;
+        return sources;
     }
 
     @Override
     public Map<String, DataSetPlugin> getDataSets() {
-        return dataSetMap;
+        return dataSets;
     }
 
     @Override
-    public List<LinkPlugin> getLinks() {
-        return (List<LinkPlugin>) linkMap.values();
+    public Map<String, LinkPlugin> getLinks() {
+        return links;
     }
 
 }

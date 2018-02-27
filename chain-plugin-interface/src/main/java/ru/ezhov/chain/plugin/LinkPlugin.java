@@ -5,6 +5,7 @@ import ru.ezhov.chain.plugin.exception.LinkInitializeException;
 import ru.ezhov.chain.plugin.exception.LinkJoinException;
 import ru.ezhov.chain.plugin.exception.SourcePluginException;
 
+import java.util.List;
 import java.util.Map;
 
 public interface LinkPlugin extends PluginInfo {
@@ -26,8 +27,8 @@ public interface LinkPlugin extends PluginInfo {
      *                           и происходит вызов всех {@link SourcePlugin#preDestroy()}
      */
     void join(
-            SourcePlugin[] sources,
-            DataSetPlugin[] dataSets
+            List<SourcePlugin> sources,
+            List<DataSetPlugin> dataSets
     ) throws LinkJoinException, SourcePluginException, DataSetPluginException;
 
     @Override
