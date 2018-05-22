@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chain-configuration</artifactId>
+    <artifactId>chain-implementation-configuration</artifactId>
     <packaging>jar</packaging>
 
     <name>chain-configuration</name>
@@ -19,12 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>ru.ezhov</groupId>
-            <artifactId>chain-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

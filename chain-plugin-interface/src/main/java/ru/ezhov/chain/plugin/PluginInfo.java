@@ -14,5 +14,4 @@ public interface PluginInfo {
      * @return - номер версии
      */
     String version();
-
 }

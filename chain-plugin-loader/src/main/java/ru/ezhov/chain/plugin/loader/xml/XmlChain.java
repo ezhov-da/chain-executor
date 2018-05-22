@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-//TODO: Подумать над уходом от инициализации сразу
 @XmlRootElement(name = "chain")
 public class XmlChain {
 

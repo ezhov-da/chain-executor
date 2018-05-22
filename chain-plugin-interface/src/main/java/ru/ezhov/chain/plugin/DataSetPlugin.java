@@ -12,8 +12,9 @@ public interface DataSetPlugin extends PluginInfo {
      *
      * @param param   - параметры передаваемые при инициализации контекста из конфигурационного файла
      * @param sources - массив ожидаемых объектов источников для получения набора данных
-     * @throws Exception - в случае выбрасывания ошибки, работа контекста прекращается и
-     *                   вызываются все {@link SourcePlugin#preDestroy()}
+     *                <p/>
+     *                В случае выбрасывания ошибки, работа контекста прекращается и
+     *                вызываются все {@link SourcePlugin#preDestroy()}
      */
     void init(String param, List<SourcePlugin> sources) throws DataSetInitializeException;
 

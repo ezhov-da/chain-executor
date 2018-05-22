@@ -15,7 +15,6 @@ public interface SourcePlugin extends PluginInfo {
 
     /**
      * @return - любой объект, который потом можно будет получать из источника
-     * @throws Exception
      */
     Object getSource() throws SourcePluginException;
 

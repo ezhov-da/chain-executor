@@ -23,7 +23,6 @@ public class PropertiesChainConfiguration implements ChainConfiguration {
 
         try {
             properties = new Properties();
-
             properties.load(new FileInputStream(pathToPropertyFile));
 
             sourceConfigurationImpls = new HashSet<>();
