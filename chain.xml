@@ -1,0 +1,32 @@
+<!--https://code.google.com/archive/p/reflections/-->
+<chain>
+    <sources>
+        <sourcePlugin name="test.sourcePlugin">
+            Вот этот текст я возвращаю
+        </sourcePlugin>
+    </sources>
+
+    <data-sets>
+        <data-set name="test.dataset">
+            <input-sources>
+                <name>test.sourcePlugin</name>
+            </input-sources>
+
+            <!--info может описывать что угодно-->
+        </data-set>
+    </data-sets>
+
+    <links>
+        <link name="test.chainlink">
+            <input-sources>
+                <name>test.sourcePlugin</name>
+            </input-sources>
+
+            <input-dataset>
+                <name>test.dataset</name>
+            </input-dataset>
+
+            <!--любая строка, которая будет обрабатываться клиентом-->
+        </link>
+    </links>
+</chain>
