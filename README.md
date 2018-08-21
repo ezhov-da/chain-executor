@@ -1,5 +1,7 @@
 # chain-executor  
 
+**Проект заморожен**
+
 Пожалуйста, используйте для ознакомления ветку разработки <a href="https://github.com/ezhov-da/chain-executor/tree/dev">[dev]</a> .  
 Так же доступна диаграмма отношений **chain-executor.xml** в корне проекта, с которой можно ознакомиться через сайт <a href="https://www.draw.io">draw.io</a> 
 
