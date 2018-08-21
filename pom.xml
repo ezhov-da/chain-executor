@@ -8,12 +8,20 @@
     <modules>
         <module>chain-plugin-interface</module>
         <module>chain-plugin-implementation-datasets</module>
-        <module>chain-plugin-implementation-links</module>
-        <module>chain-plugin-implementation-sources</module>
-        <module>chain-configuration</module>
-        <module>chain-loader</module>
+        <module>chain-plugin-implementation-link</module>
+        <module>chain-plugin-implementation-source</module>
+        <module>chain-implementation-configuration</module>
+        <module>chain-plugin-loader</module>
         <module>chain-core</module>
+        <module>app-console</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>ru.ezhov</groupId>
+            <artifactId>chain-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <packaging>pom</packaging>
 
     <name>chain-executor</name>
@@ -49,7 +57,6 @@
     </dependencyManagement>
 
     <build>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -62,7 +69,6 @@
                     </configuration>
                 </plugin>
             </plugins>
-
         </pluginManagement>
     </build>
 

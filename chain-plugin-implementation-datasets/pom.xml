@@ -7,11 +7,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chain-datasets</artifactId>
+    <artifactId>chain-plugin-implementation-datasets</artifactId>
     <packaging>jar</packaging>
-
-    <name>chain-datasets</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>ru.ezhov</groupId>
-            <artifactId>chain-plugins</artifactId>
+            <artifactId>chain-plugin-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
